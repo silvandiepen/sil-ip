@@ -15,10 +15,10 @@ const getIpCountry = (event: HandlerEvent) => {
 
 const getIpOS = (event: HandlerEvent) => {
   return (
-    event.headers["sec-ch-ua-platform"] ||
-    event.multiValueHeaders["Sec-Ch-Ua-Platform"] ||
-    "-"
-  );
+    (event.headers["sec-ch-ua-platform"] ||
+      event.multiValueHeaders["Sec-Ch-Ua-Platform"] ||
+      "-") as string
+  ).replace(/['"]+/g, "");
 };
 
 const handler: Handler = async (
