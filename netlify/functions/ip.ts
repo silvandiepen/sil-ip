@@ -20,12 +20,8 @@ const handler: Handler = async (
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Hello World",
       ip: getIpAddress(event),
       country: getIpCountry(event),
-      event,
-      context,
-      test: "test",
     }),
   };
 };
