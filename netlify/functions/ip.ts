@@ -7,6 +7,11 @@ const getIpAddress = (event: HandlerEvent) => {
     "0.0.0.0"
   );
 };
+const getIpCountry = (event: HandlerEvent) => {
+  return (
+    event.headers["x-country"] || event.multiValueHeaders["X-Country"] || "-"
+  );
+};
 
 const handler: Handler = async (
   event: HandlerEvent,
@@ -17,6 +22,7 @@ const handler: Handler = async (
     body: JSON.stringify({
       message: "Hello World",
       ip: getIpAddress(event),
+      country: getIpCountry(event),
       event,
       context,
       test: "test",
