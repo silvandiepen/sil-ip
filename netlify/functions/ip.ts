@@ -13,6 +13,14 @@ const getIpCountry = (event: HandlerEvent) => {
   );
 };
 
+const getIpOS = (event: HandlerEvent) => {
+  return (
+    event.headers["sec-ch-ua-platform"] ||
+    event.multiValueHeaders["Sec-Ch-Ua-Platform"] ||
+    "-"
+  );
+};
+
 const handler: Handler = async (
   event: HandlerEvent,
   context: HandlerContext
@@ -22,6 +30,7 @@ const handler: Handler = async (
     body: JSON.stringify({
       ip: getIpAddress(event),
       country: getIpCountry(event),
+      os: getIpOS(event),
     }),
   };
 };
