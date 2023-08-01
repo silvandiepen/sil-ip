@@ -22,5 +22,8 @@
   "homepage": "https://github.com/silvandiepen/sil-ip#readme",
   "dependencies": {
     "@netlify/functions": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5"
   }
 }
