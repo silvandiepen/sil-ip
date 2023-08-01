@@ -1,10 +1,11 @@
-import ip from "ip";
-const requestIp = require("request-ip");
-
 import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
-const getIpAddress = () => {
-  return ip.address();
+const getIpAddress = (event: HandlerEvent) => {
+  return (
+    event.headers["x-forwarded-for"] ||
+    event.headers["x-nf-client-connection-ip"] ||
+    "0.0.0.0"
+  );
 };
 
 const handler: Handler = async (
@@ -15,7 +16,7 @@ const handler: Handler = async (
     statusCode: 200,
     body: JSON.stringify({
       message: "Hello World",
-      ip: getIpAddress(),
+      ip: getIpAddress(event),
       event,
       context,
       test: "test",
