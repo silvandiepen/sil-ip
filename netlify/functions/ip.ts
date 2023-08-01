@@ -1,4 +1,5 @@
 import ip from "ip";
+const requestIp = require('request-ip');
 
 import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
@@ -13,6 +14,8 @@ const handler: Handler = async (
   return {
     statusCode: 200,
     body: JSON.stringify({ message: "Hello World", ip: getIpAddress() }),
+    event,
+    context
   };
 };
 
