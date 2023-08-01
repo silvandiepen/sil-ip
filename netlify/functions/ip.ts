@@ -1,9 +1,10 @@
-var ip = require("ip");
+
+import os from "os";
 import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 
 
 const getIpAddress = ()=>{
-return ip.address();
+return os.networkInterfaces();
 }
 
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
